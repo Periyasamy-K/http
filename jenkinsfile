@@ -5,12 +5,10 @@ pipeline {
     environment {
         DOCKER_IMAGE = "apache-server"
         DOCKER_REGISTRY = "krlmlive8718"
-        GIT_REPO = "your-git-repo-url"
-        AWS_REGION = "your-aws-region"
-        EKS_CLUSTER = "your-eks-cluster-name"
-        KUBE_CONFIG = credentials('kubeconfig-credentials-id') // Jenkins credentials containing kubeconfig
-        DOCKER_CREDENTIALS_ID = 'docker-registry-credentials-id' // Docker registry credentials ID in Jenkins
-        AWS_CREDENTIALS_ID = 'aws-credentials-id' // AWS credentials ID in Jenkins
+        GIT_REPO = "https://github.com/Periyasamy-K/http.git"
+        EKS_CLUSTER = "ngnix"
+        KUBE_CONFIG = credentials('eb85578e-5ae1-4994-b19a-267e9ed27fc1	')
+        DOCKER_CREDENTIALS_ID = 'docker-hub	' 
     }
 
     stages {
@@ -40,11 +38,9 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
                     withKubeConfig([credentialsId: 'kubeconfig-credentials-id', contextName: "${EKS_CLUSTER}"]) {
                         sh 'kubectl apply -f apache-deployment.yaml'
-                    }
-                }
+                 }
             }
         }
     }
