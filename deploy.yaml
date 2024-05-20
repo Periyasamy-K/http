@@ -1,4 +1,3 @@
-# apache-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: apache
-        image: <your-docker-registry>/apache-server:latest
+        image: krlmlive8718/apache-server:latest
         ports:
         - containerPort: 80
         resources:
