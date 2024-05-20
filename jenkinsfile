@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "apache-server"
-        DOCKER_REGISTRY = "your-docker-registry"
+        DOCKER_REGISTRY = "krlmlive8718"
         GIT_REPO = "your-git-repo-url"
         AWS_REGION = "your-aws-region"
         EKS_CLUSTER = "your-eks-cluster-name"
